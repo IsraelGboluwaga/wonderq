@@ -34,15 +34,15 @@ Navigate to the repo directory and run `node app`
 
 The message queue service comes with a command line tool that allows you to view the state of the service while it's running.
 `Commands:
- queue    - View messages in MQ.
+ queue: View the current messages in the queue.
  
- database - View persisted messages.
+ database: View messages that have been persisted to the database.
  
- pending  - View jobs being processed by consumers
+ pending: View jobs that are being processed by consumers and awaiting completion, along with its remaining duration.
  
- cmds     - Reprint command list.
+ cmds: Reprint the command list.
  
- pause    - TODO`
+ pause: TODO`
 
 ## Built With
 
