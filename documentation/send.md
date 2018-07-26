@@ -18,7 +18,7 @@ Sends a message to the Wonder Simple Message Queue Service
 
 **Code** : `200 OK`
 
-**Content** : `{ "messageID": [integer]}`
+**Content** : `{ "messageID": [integer] }`
 
 ## Error Responses
 
