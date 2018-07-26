@@ -18,6 +18,10 @@ The TestApp generates JSON messages with random characters and sends them at ran
 
 It also fetches messages at random intervals from the queue (set at a slower rate), pseudo-processes them, and returns a confirmation to the service, indicating that it was successful and that the queue no longer needs to keep track of the message.
 
+## Deployment
+
+Navigate to the repo directory and run `node app`
+
 ## API
 
 ## Message Queue Service Endpoints
