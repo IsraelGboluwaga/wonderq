@@ -30,6 +30,14 @@ Navigate to the repo directory and run `node app`
 * [Fetch](documentation/fetch.md) : `GET /fetch/`
 * [Confirm](documentation/confirm.md) : `POST /confirm/`
 
+## Commands
+`Commands:
+ queue    - View messages in MQ.
+ database - View persisted messages.
+ pending  - View jobs being processed by consumers
+ cmds     - Reprint command list.
+ pause    - TODO`
+
 ## Built With
 
 * [Node.js](https://nodejs.org/en/)
