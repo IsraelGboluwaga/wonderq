@@ -36,7 +36,7 @@ The message queue service comes with a command line tool that allows you to view
 `Commands:
  queue: View the current messages in the queue.
  
- database: View messages that have been persisted to the database.
+ **database**: View messages that have been persisted to the database.
  
  pending: View jobs that are being processed by consumers and awaiting completion, along with its remaining duration.
  
