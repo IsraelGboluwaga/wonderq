@@ -23,7 +23,7 @@ Fetches messages from the Wonder Simple Message Queue Service
 **Content** : 
 A JSON object with integer indices mapped to a message ID and message.
 
-`{ [integer] : { "messageID": [integer], "message": [JSON], [integer] : { "messageID": [integer], "message": [JSON], [integer] : { "messageID": [integer], "message": [JSON], ... }` 
+`{ [integer] : { "messageID": [integer], "message": [JSON], ... }` 
 
 **Example** : `{
   "0": {
