@@ -10,7 +10,7 @@ Node.js
 
 Run TestApp/app.js in Node after Wonder Simple Message Queue has been initialized.
 
-Test suite with unit tests are incomplete.
+Test suite with unit tests still need to be finalized.
 
 ### End-to-end Test
 
