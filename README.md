@@ -32,7 +32,7 @@ Navigate to the repo directory and run `node app`
 
 ## State View Developer Tool - Commands
 
-The following commands can be run while the Message Queue Service is running
+The message queue service comes with a command line tool that allows you to view the state of the service while it's running.
 `Commands:
  queue    - View messages in MQ.
  
