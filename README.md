@@ -33,9 +33,13 @@ Navigate to the repo directory and run `node app`
 ## Commands
 `Commands:
  queue    - View messages in MQ.
+ 
  database - View persisted messages.
+ 
  pending  - View jobs being processed by consumers
+ 
  cmds     - Reprint command list.
+ 
  pause    - TODO`
 
 ## Built With
