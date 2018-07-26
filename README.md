@@ -33,7 +33,8 @@ Navigate to the repo directory and run `node app`
 ## State View Developer Tool - Commands
 
 The message queue service comes with a command line tool that allows you to view the state of the service while it's running.
-Commands:
+
+**Commands:**
 
  **queue:** View the current messages in the queue.
  
