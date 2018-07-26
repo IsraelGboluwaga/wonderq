@@ -22,9 +22,9 @@ It also fetches messages at random intervals from the queue (set at a slower rat
 
 ## Message Queue Service Endpoints
 
-* [Send](send.md) : `POST /send/`
-* [Fetch](fetch.md) : `GET /fetch/`
-* [Confirm](confirm.md) : `POST /confirm/`
+* [Send](documentation/confirm.md) : `POST /send/`
+* [Fetch](documentation/fetch.md) : `GET /fetch/`
+* [Confirm](documentation/confirm.md) : `POST /confirm/`
 
 ## Built With
 
