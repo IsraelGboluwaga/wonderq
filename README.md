@@ -44,7 +44,7 @@ The message queue service comes with a command line tool that allows you to view
  
  **cmds**: Reprint the command list.
  
- **pause**: TODO`
+ **pause**: TODO
 
 ## Built With
 
