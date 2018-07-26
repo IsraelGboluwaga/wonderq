@@ -8,7 +8,7 @@ Node.js
 
 ## Running the tests
 
-Run TestApp/app.js in Node after the Wonder Simple Message Queue has been initialized.
+Run TestApp/app.js in Node with `node app` after the Wonder Simple Message Queue has been initialized.
 
 Test suite with unit tests still needs to be finalized.
 
@@ -20,7 +20,7 @@ It also fetches messages at random intervals from the queue (set at a slower rat
 
 ## Deployment
 
-Navigate to the repo directory and run `node app`
+Navigate to the repo directory and run `node app`.
 
 ## API
 
