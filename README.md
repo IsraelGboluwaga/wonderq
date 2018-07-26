@@ -30,7 +30,9 @@ Navigate to the repo directory and run `node app`
 * [Fetch](documentation/fetch.md) : `GET /fetch/`
 * [Confirm](documentation/confirm.md) : `POST /confirm/`
 
-## Commands
+## State View Developer Tool - Commands
+
+The following commands can be run while the Message Queue Service is running
 `Commands:
  queue    - View messages in MQ.
  
