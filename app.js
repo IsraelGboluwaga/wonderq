@@ -50,6 +50,10 @@ function handleRequest(request, response) {
             response.end();
         }
     }
+    else {
+        response.statusCode = 404;
+        response.end();
+    }
 }
 
 // Receives messages sent from producers
