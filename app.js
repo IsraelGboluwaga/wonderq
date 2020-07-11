@@ -2,6 +2,7 @@
 const
     config = require('./config'),
     http = require('http'),
+    express = require('express'),
     urllib = require('url'),
     inspector = require('./state-inspector'),
     Deque = require("double-ended-queue"),
@@ -14,6 +15,7 @@ const JOB_LIFETIME_IN_SECONDS = config.jobLifetimeSeconds,
     PORT = config.port,
     MAX_MESSAGE_FETCHES = config.maxMessageFetch;
 
+const app = express()
 const messages = new Deque();
 const dbConnection = new KeyValueDBMock();
 const outstandingJobs = new OutstandingJobs(JOB_LIFETIME_IN_SECONDS, messages, dbConnection);
@@ -21,40 +23,19 @@ const jobOwner = {}; //Feature to add
 
 // Initialize processes
 outstandingJobs.start();
-http.createServer(handleRequest).listen(PORT);
-console.log(`Started Message Queue on port ${PORT} \n`);
+app.listen(PORT, () => console.log(`Started Message Queue on port ${PORT} \n`))
 
-// HTTP Router
-function handleRequest(request, response) {
-    const { method } = request;
-    const urlParts = urllib.parse(request.url, true);
+app.post(config.sendURL, (req, res) => {
+    sendRequestHandle(req, res);
+})
 
-    if (method === 'POST') {
-        if (urlParts.pathname.toLowerCase() === config.sendURL) {
-            sendRequestHandle(request, response);
-        }
-        else if (urlParts.pathname.toLowerCase() === config.confirmURL) {
-            confirmRequestHandle(request, response);
-        }
-        else {
-            response.statusCode = 404;
-            response.end();
-        }
-    }
-    else if (method === 'GET') {
-        if (urlParts.pathname.toLowerCase() === config.fetchURL) {
-            fetchRequestHandle(request, response);
-        }
-        else {
-            response.statusCode = 404;
-            response.end();
-        }
-    }
-    else {
-        response.statusCode = 404;
-        response.end();
-    }
-}
+app.post(config.confirmURL, (req, res) => {
+    confirmRequestHandle(req, res);
+})
+
+app.get(config.fetchURL, (req, res) => {
+    fetchRequestHandle(req, res);
+})
 
 // Receives messages sent from producers
 function sendRequestHandle(request, response) {
