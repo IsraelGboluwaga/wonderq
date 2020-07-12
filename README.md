@@ -8,19 +8,15 @@ Node.js
 
 ## Running the tests
 
-Run TestApp/app.js in Node with `node src/app` after the Wonder Simple Message Queue has been initialized.
+Run integration-test-app/app.js in Node with `node app` after the Message Queue Service has been initialized.
 
-Test suite with unit tests still needs to be finalized.
 
-### End-to-end Test
+### End-to-End Test App
 
-The TestApp generates JSON messages with random characters and sends them at random intervals to the message queue.
+The test app generates JSON messages with random characters and sends them at random intervals to the message queue.
 
 It also fetches messages at random intervals from the queue (set at a slower rate), pseudo-processes them, and returns a confirmation to the service, indicating that it was successful and that the queue no longer needs to keep track of the message.
 
-## Deployment
-
-Navigate to the repo directory and run `node app`.
 
 ## API
 
@@ -52,7 +48,7 @@ The message queue service comes with a command line tool that allows you to view
 
 ## Authors
 
-* **Lyle Le**
+* **Lyle L**
 
 
 ## Requirements
