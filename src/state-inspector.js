@@ -22,7 +22,7 @@ function activateInspector(queue, db, jobs) {
             case COMMAND_NAMES['view_queue']:
                 console.log(queue);
                 break;
-            case COMMAND_NAMES['pending-jobs']:
+            case COMMAND_NAMES['pending_jobs']:
                 printPendingJobList(jobs);
                 break;
             case COMMAND_NAMES['cmds']:
