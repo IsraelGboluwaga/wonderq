@@ -5,13 +5,13 @@ const
     route = require('express').Router();
 
 
-route.get(config.fetchURL, (req, res) => {
+route.get(config.FETCH_URL, (req, res) => {
     fetchRequestHandle(req, res);
 })
 
 
 function fetchRequestHandle(request, response) {
-    if (messages.length <= 0) {
+    if (messagesGlobal.length <= 0) {
         response.statusCode = 204;
         response.end();
     }
@@ -20,14 +20,14 @@ function fetchRequestHandle(request, response) {
         let messageSet = {};
 
         if (util.isNumeric(count) && count > 1) {
-            for (let i = 0; i < Math.min(count, MAX_MESSAGE_FETCHES, messages.length); i++) {
-                messageSet[i] = messages.shift();
-                outstandingJobs.add(messageSet[i]);
+            for (let i = 0; i < Math.min(count, config.MAX_MESSAGE_FETCHES, messagesGlobal.length); i++) {
+                messageSet[i] = messagesGlobal.shift();
+                outstandingJobsGlobal.add(messageSet[i]);
             }
         }
         else { // Return only one message if no query count is specified
-            messageSet[0] = messages.shift();
-            outstandingJobs.add(messageSet[0]);
+            messageSet[0] = messagesGlobal.shift();
+            outstandingJobsGlobal.add(messageSet[0]);
         }
         response.statusCode = 200;
         response.setHeader('content-type', 'application/json');

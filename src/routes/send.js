@@ -3,7 +3,7 @@ const
     util = require('../utilities'),
     route = require('express').Router();
 
-route.post(config.sendURL, (req, res) => {
+route.post(config.SEND_URL, (req, res) => {
     sendRequestHandle(req, res);
 })
 
@@ -36,7 +36,7 @@ function addToQueue(msg) {
         resolve(insertInDB(msg)
             .then((msgID) => {
                 let body = {id: msgID, message: msg};
-                messages.push(body);
+                messagesGlobal.push(body);
                 return msgID
             })
         )
@@ -48,7 +48,7 @@ function insertInDB(msg) {
     return new Promise((resolve, reject) => {
         // Open connection with a real database
         // Catch any errors while attempting to connect
-        setTimeout(resolve, config.DatabaseSimulatedDelay, dbConnection.insert(msg));
+        setTimeout(resolve, config.DATABASE_SIMULATED_DELAY, DB_CONNECTION_GLOBAL.insert(msg));
         // Catch any errors from failed write to database
         // Close connection and cleanup resources
     });

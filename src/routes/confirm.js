@@ -4,7 +4,7 @@ const
     route = require('express').Router();
 
 
-route.post(config.confirmURL, (req, res) => {
+route.post(config.CONFIRM_URL, (req, res) => {
     confirmRequestHandle(req, res);
 })
 
@@ -25,7 +25,7 @@ function confirmRequestHandle(request, response) {
                     }
                 }
                 if (completedJobIds.length > 0) {
-                    outstandingJobs.confirmJobCompletion(completedJobIds);
+                    outstandingJobsGlobal.confirmJobCompletion(completedJobIds);
                 }
             } catch (err) {
                 console.log(err);

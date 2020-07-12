@@ -2,15 +2,15 @@
 
 const config = {};
 
-config.port = 8086;
-config.jobLifetimeSeconds = 500;
-config.maxMessageFetch = 5;
-config.DatabaseSimulatedDelay = 50;
+config.PORT = 8086;
+config.JOB_LIFETIME_SECONDS = 500;
+config.MAX_MESSAGE_FETCH = 5;
+config.DATABASE_SIMULATED_DELAY = 50;
 
 
 //Routes
-config.sendURL = '/send';
-config.fetchURL = '/fetch';
-config.confirmURL = '/confirm';
+config.SEND_URL = '/send';
+config.FETCH_URL = '/fetch';
+config.CONFIRM_URL = '/confirm';
 
 module.exports = config;

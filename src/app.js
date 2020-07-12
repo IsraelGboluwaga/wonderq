@@ -8,20 +8,16 @@ const
     KeyValueDBMock = require('./db-mock'),
     OutstandingJobs = require('./outstanding-jobs');
 
-// Configuration;
-const JOB_LIFETIME_IN_SECONDS = config.jobLifetimeSeconds,
-    PORT = config.port;
 
-global.messages = new Deque();
-global.MAX_MESSAGE_FETCHES = config.maxMessageFetch;
-global.dbConnection = new KeyValueDBMock();
-global.outstandingJobs = new OutstandingJobs(JOB_LIFETIME_IN_SECONDS, messages, dbConnection);
+global.messagesGlobal = new Deque();
+global.DB_CONNECTION_GLOBAL = new KeyValueDBMock();
+global.outstandingJobsGlobal = new OutstandingJobs(config.JOB_LIFETIME_SECONDS, messagesGlobal, DB_CONNECTION_GLOBAL);
 
-outstandingJobs.start();
+outstandingJobsGlobal.start();
 
 const app = express()
 app.use('/', routes);
-app.listen(PORT, () => console.log(`Started Message Queue on port ${PORT} \n`))
+app.listen(config.PORT, () => console.log(`Started Message Queue on port ${config.PORT} \n`))
 
 
-inspector(messages, dbConnection, outstandingJobs);
+inspector(messagesGlobal, DB_CONNECTION_GLOBAL, outstandingJobsGlobal);
