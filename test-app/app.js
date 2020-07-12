@@ -1,15 +1,14 @@
+const config = require("./config")
 const http = require("http");
 const Deque = require("double-ended-queue");
 
-const HOST = "localhost";
-const PORT = 8086;
-const FETCH_COUNT = 5;
+
 const jobQueue = new Deque();
 
 const sendOptions = {
-    host: HOST,
-    port: PORT,
-    path: "/send",
+    host: config.HOST,
+    port: config.PORT,
+    path: config.SEND_URL,
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -17,16 +16,16 @@ const sendOptions = {
 };
 
 const fetchOptions = {
-    host: HOST,
-    port: PORT,
-    path: "/fetch?count=" + FETCH_COUNT,
+    host: config.HOST,
+    port: config.PORT,
+    path: config.FETCH_URL + "?count=" + config.FETCH_COUNT,
     method: "GET",
 };
 
 const confirmOptions = {
-    host: HOST,
-    port: PORT,
-    path: "/confirm",
+    host: config.HOST,
+    port: config.PORT,
+    path: config.CONFIRM_URL,
     method: "POST",
     headers: {
         "Content-Type": "application/json"
