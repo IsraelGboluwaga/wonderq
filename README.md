@@ -8,7 +8,7 @@ Node.js
 
 ## Running the tests
 
-Run TestApp/app.js in Node with `node app` after the Wonder Simple Message Queue has been initialized.
+Run TestApp/app.js in Node with `node src/app` after the Wonder Simple Message Queue has been initialized.
 
 Test suite with unit tests still needs to be finalized.
 

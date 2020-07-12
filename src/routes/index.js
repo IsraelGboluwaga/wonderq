@@ -1,43 +1,23 @@
-'use strict';
 const
-    config = require('./config'),
-    http = require('http'),
-    express = require('express'),
+    config = require('../config'),
     urllib = require('url'),
-    inspector = require('./state-inspector'),
-    Deque = require("double-ended-queue"),
-    KeyValueDBMock = require('./db-mock'),
-    OutstandingJobs = require('./outstanding-jobs'),
-    util = require('./utilities');
+    util = require('../utilities'),
+    routes = require('express').Router();
 
-// Configuration;
-const JOB_LIFETIME_IN_SECONDS = config.jobLifetimeSeconds,
-    PORT = config.port,
-    MAX_MESSAGE_FETCHES = config.maxMessageFetch;
 
-const app = express()
-const messages = new Deque();
-const dbConnection = new KeyValueDBMock();
-const outstandingJobs = new OutstandingJobs(JOB_LIFETIME_IN_SECONDS, messages, dbConnection);
-const jobOwner = {}; //Feature to add
-
-// Initialize processes
-outstandingJobs.start();
-app.listen(PORT, () => console.log(`Started Message Queue on port ${PORT} \n`))
-
-app.post(config.sendURL, (req, res) => {
+routes.post(config.sendURL, (req, res) => {
     sendRequestHandle(req, res);
 })
 
-app.post(config.confirmURL, (req, res) => {
+routes.post(config.confirmURL, (req, res) => {
     confirmRequestHandle(req, res);
 })
 
-app.get(config.fetchURL, (req, res) => {
+routes.get(config.fetchURL, (req, res) => {
     fetchRequestHandle(req, res);
 })
 
-// Receives messages sent from producers
+
 function sendRequestHandle(request, response) {
     const body = [];
     request.on('error', (err) => {
@@ -61,7 +41,6 @@ function sendRequestHandle(request, response) {
     });
 }
 
-// Adds a message to the message queue
 function addToQueue(msg) {
     return new Promise((resolve, reject) => {
         resolve(insertInDB(msg)
@@ -74,7 +53,6 @@ function addToQueue(msg) {
     })
 }
 
-// Persists the message to the database
 function insertInDB(msg) {
     return new Promise((resolve, reject) => {
         // Open connection with a real database
@@ -85,7 +63,6 @@ function insertInDB(msg) {
     });
 }
 
-// Sends the result of a write request to the producer
 function returnWriteResponse(response, msgID) {
     // Database write failed
     if (typeof msgID === undefined || Number.isNaN(msgID) || msgID === null) {
@@ -99,10 +76,8 @@ function returnWriteResponse(response, msgID) {
     }
 }
 
-// Requests for messages from consumers
 function fetchRequestHandle(request, response) {
     if (messages.length <= 0) {
-        // There are no messages sitting in the queue
         response.statusCode = 204;
         response.end();
     }
@@ -126,7 +101,6 @@ function fetchRequestHandle(request, response) {
     }
 }
 
-// Handles confirmations from consumers indicating that a message was successfully processed
 function confirmRequestHandle(request, response) {
     if (request.headers['content-type'] === 'application/json') {
         const body = [];
@@ -161,9 +135,4 @@ function confirmRequestHandle(request, response) {
     }
 }
 
-
-
-inspector(messages, dbConnection, outstandingJobs);
-
-
-
+module.exports = routes;
