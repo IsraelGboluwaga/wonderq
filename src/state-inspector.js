@@ -17,13 +17,13 @@ function activateInspector(queue, db, jobs) {
     }).on('data', (command) => {
         switch (command.trim().toLowerCase()) {
             case COMMAND_NAMES['database']:
-                console.log(JSON.stringify(db, null, 4));
+                viewDB(db)
                 break;
             case COMMAND_NAMES['view_queue']:
-                console.log(queue);
+                viewQueue(queue)
                 break;
             case COMMAND_NAMES['pending_jobs']:
-                printPendingJobList(jobs);
+                viewPendingJobList(jobs);
                 break;
             case COMMAND_NAMES['cmds']:
                 printCommands();
@@ -47,7 +47,15 @@ function printCommands() {
     ${COMMAND_NAMES['pause']}        - TODO`);
 }
 
-function printPendingJobList(jobs) {
+function viewDB(db) {
+    console.log(JSON.stringify(db, null, 4));
+}
+
+function viewQueue(queue) {
+    console.log(queue);
+}
+
+function viewPendingJobList(jobs) {
     const len = jobs._outstandingJobsByTime.length;
     const currentBucket = Math.floor((new Date).getTime() / 1000) % len;
     for (let i = 0; i < len; i++) {
