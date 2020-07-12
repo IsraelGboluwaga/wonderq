@@ -1,6 +1,6 @@
 # Wonder Simple Message Queue
 
-A quick implementation of a message queue service that stores and distributes JSON messages. Messages can be configured with a limited lifetime, where if a consumer fails to confirm it completed processing the message by the end of the duration, the message is re-entered into the front of the queue.
+An implementation of a message queuing service. Messages can be configured with a limited lifetime, where if a consumer fails to confirm it completed processing the message by the end of the duration, the message is re-entered into the front of the queue.
 
 ### Prerequisites
 
@@ -36,11 +36,11 @@ The message queue service comes with a command line tool that allows you to view
 
 **Commands:**
 
- **queue:** View the current messages in the queue.
+ **view-queue:** View the current messages in the queue.
  
  **database:** View messages that have been persisted to the database.
  
- **pending**: View jobs that are being processed by consumers and awaiting completion, along with its remaining duration.
+ **pending-jobs**: View jobs that are being processed by consumers and awaiting completion, along with its remaining duration.
  
  **cmds**: Reprint the command list.
  
