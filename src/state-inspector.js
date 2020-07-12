@@ -19,7 +19,7 @@ function activateInspector(queue, db, jobs) {
             case COMMAND_NAMES['database']:
                 console.log(JSON.stringify(db, null, 4));
                 break;
-            case COMMAND_NAMES['view-queue']:
+            case COMMAND_NAMES['view_queue']:
                 console.log(queue);
                 break;
             case COMMAND_NAMES['pending-jobs']:
@@ -31,6 +31,8 @@ function activateInspector(queue, db, jobs) {
             case COMMAND_NAMES['pause']:
                 // TODO
                 break
+            default:
+                console.log('Command not found')
         }
     });
     printCommands();
