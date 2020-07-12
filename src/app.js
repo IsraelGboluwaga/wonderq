@@ -1,6 +1,6 @@
 'use strict';
 const
-    config = require('./config'),
+    config = require('../config'),
     express = require('express'),
     routes = require('./routes'),
     inspector = require('./state-inspector'),

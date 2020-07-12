@@ -1,5 +1,5 @@
 const
-    config = require('../config'),
+    config = require('../../config'),
     urllib = require('url'),
     util = require('../utilities'),
     routes = require('express').Router();
