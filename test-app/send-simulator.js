@@ -20,7 +20,7 @@ function startSending() {
 
 function sendRandomMessages() {
     const message = {};
-    message[generateRandomChars(30)] = generateRandomChars(30);
+    message[util.generateRandomChars(30)] = util.generateRandomChars(30);
 
     const request = http.request(sendOptions, (response) => {
 
@@ -29,16 +29,5 @@ function sendRandomMessages() {
     request.end();
     console.log("Sending message: " + JSON.stringify(message));
 }
-
-function generateRandomChars(len) {
-    let text = "";
-    let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    for (let i = 0; i < util.randInt(0, len); i++)
-        text += base.charAt(util.randInt(0, base.length));
-
-    return text;
-}
-
 
 module.exports = startSending;
